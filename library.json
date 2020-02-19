@@ -1,0 +1,24 @@
+{
+  "name": "ESPSmsA6Transceiver",
+  "keywords": "A6, GSM, mobile",
+  "description": "An ESP8266/Arduino library for communicating with the A6 GSM module.",
+  "authors":
+  {
+    "name": "Gérald GUIONY",
+    "url": "http://wpsm.free.fr"
+  },
+  "repository": {
+        "type": "git",
+        "url": "https://github.com/gguiony/SmsA6Transceiver.git"
+  },
+  "version": "3.2",
+  "frameworks": "arduino",
+  "platforms": "*",
+  "dependencies": [
+    {
+      "name": "ESPCoreExtension",
+      "version": "3.2",
+      "platforms": "espressif8266"
+    }
+  ]
+}
