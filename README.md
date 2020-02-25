@@ -23,9 +23,10 @@ To use ESPSmsA6Transceiver, you need:
 
 To use this library you might need to have the latest version of [ESPCoreExtension library](https://github.com/gerald-guiony/ESPCoreExtension)
 
-## A6 GSM Wiring
+## A6 GSM
 
-![A6 GSM Wiring](https://github.com/gerald-guiony/ESPRadioCC1101Transceiver/blob/master/docs/CC1101%20ESP8266.png)
+* Pinout
 
+![A6 GSM Pinout](https://github.com/gerald-guiony/ESPSmsA6Transceiver/blob/master/docs/PINOUT_ALS.jpg)
 
-[A6 firmware update](https://www.iot-experiments.com/ai-thinker-a6-module-firmware-update/)
+* [Firmware update](https://www.iot-experiments.com/ai-thinker-a6-module-firmware-update/)
