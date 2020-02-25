@@ -15,7 +15,6 @@ To use ESPSmsA6Transceiver, you need:
 
 * An ESP8266
 * An AI-Thinker A6 GSM module
-* An USB DVB Key (compatible with SDR) 
 * The Arduino IDE for ESP8266 (version 1.8.8 minimum)
 * Basic knowledge of the Arduino environment (upload a sketch, import libraries, ...)
 
