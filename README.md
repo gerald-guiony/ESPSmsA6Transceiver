@@ -27,8 +27,8 @@ To use this library you might need to have the latest version of [ESPCoreExtensi
 
 * [Datasheet](https://github.com/gerald-guiony/ESPSmsA6Transceiver/blob/master/docs/A6_A7_A6C_datasheet-EN.pdf)
 * [AT commands](https://github.com/gerald-guiony/ESPSmsA6Transceiver/blob/master/docs/A6_AT_commands.pdf)
-* Lot of information [here](https://www.electrodragon.com/w/GSM_GPRS_A6_Module)
+* Lot of information [here](https://www.electrodragon.com/w/GSM_GPRS_A6_Module) and [here](https://lastminuteengineers.com/a6-gsm-gprs-module-arduino-tutorial/)
 * [Firmware update](https://www.iot-experiments.com/ai-thinker-a6-module-firmware-update/)
 * Pinout
 
-![A6 GSM Pinout](https://github.com/gerald-guiony/ESPSmsA6Transceiver/blob/master/docs/PINOUT_ALS.jpg)
+![A6 GSM Pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/A6-GSM-GPRS-Module-Pinout.png)
