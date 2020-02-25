@@ -19,7 +19,7 @@ To use ESPSmsA6Transceiver, you need:
 1. Download the latest master source code [.zip](https://github.com/gerald-guiony/ESPSmsA6Transceiver/archive/master.zip)
 2. Load the `.zip` with **Sketch → Include Library → Add .ZIP Library**
 
-## Dependencies
+## Dependency
 
 To use this library you might need to have the latest version of [ESPCoreExtension library](https://github.com/gerald-guiony/ESPCoreExtension)
 
