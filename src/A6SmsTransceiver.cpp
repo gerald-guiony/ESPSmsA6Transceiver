@@ -8,11 +8,6 @@
 #include "A6SmsTransceiver.h"
 
 
-extern const int GSM_TX;
-extern const int GSM_RX;
-extern const int GSM_PWR_KEY;								// GPIO pin to connect A6 POWER KEY (SELECT/WAKEUP DEVICE)  
-
-
 //========================================================================================================================
 //
 //========================================================================================================================
@@ -34,7 +29,7 @@ A6SmsTransceiver :: A6SmsTransceiver (uint8_t rxPin, uint8_t txPin, uint8_t pwrK
 	};
 	_a6Conn = new SoftwareSerialLogger (rxPin, txPin, false, 256);
 #else
-	_aA6Conn = new SoftwareSerial (rxPin, txPin, false, 256);
+	_a6Conn = new SoftwareSerial (rxPin, txPin, false, 256);
 #endif
 
 	_A6l = new A6lib (_a6Conn);
