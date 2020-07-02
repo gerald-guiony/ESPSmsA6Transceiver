@@ -49,7 +49,6 @@ public:
 	void stop							();
 
 	int getNbSms						();
-	int getSignalStrength				();
 		
 	byte deleteSms						(int index);
 	byte deleteReadSms					();
