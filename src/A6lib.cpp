@@ -116,11 +116,11 @@ byte A6lib::waitRegistrationState (int state) {
 // Sample
 //
 // +CIEV: "MESSAGE",1
-// 
-// 
-// 
+//
+//
+//
 // +CMT: ,25
-// 
+//
 // 07913396050046F6240B913326991487F100009190519151818006C3777DFCAE03
 //
 byte A6lib::waitUnsolicitedPduSMS (std::function <void (SMSmessage &)> onUnsolicitedSMSReceived) {
@@ -131,11 +131,11 @@ byte A6lib::waitUnsolicitedPduSMS (std::function <void (SMSmessage &)> onUnsolic
         if (respStart >= 0) {
 
             char length [5]; // The length of the message body
-            
+
             // Parse the message header.
             response = response.substring(respStart);
             sscanf (response.c_str(), "+CMT: ,%s\r\n", length);
-           
+
             // The rest is the pdu message, extract it.
             String pduMessage = response.substring (strlen("+CMT: ,") + strlen(length) + 2, response.length() - 2);
 
@@ -198,7 +198,7 @@ void A6lib::powerOff (int pin) {
     pinMode(pin, OUTPUT);
     digitalWrite(pin, LOW);
 
-    // Power off command => if pin = PWR_KEY and pin is low, the modem will not restart  
+    // Power off command => if pin = PWR_KEY and pin is low, the modem will not restart
     A6command("AT+CPOF", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
 }
 

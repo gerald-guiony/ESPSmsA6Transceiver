@@ -16,7 +16,7 @@ A6SmsTransceiver :: A6SmsTransceiver (uint8_t rxPin, uint8_t txPin, uint8_t pwrK
 	Logln (F("Initializing A6 GSM"));
 
 	_pwrKey = pwrKey;
-    
+
     // Instantiate the class with Tx, Rx (remember to swap them when connecting to the A6, i.e. connect the A6's Rx pin to UART_TX).
 #ifdef DEBUG
 	//------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ A6SmsTransceiver :: ~A6SmsTransceiver () {
 bool A6SmsTransceiver :: start () {
 
 	_A6l->powerOn (
-		_pwrKey, 
+		_pwrKey,
 		[this] (SMSmessage & sms) {
 			this->_unsolicitedSmsReceived.push_back (sms);
 		}
@@ -72,16 +72,16 @@ bool A6SmsTransceiver :: start () {
 	}
 
 	Logln (F("A6 GSM is up"));
-	
+
 	// Be careful it seems to be mandatory to wait a delay before to read or send sms!
 	delay(2000);
-	
+
 	// Handle unsolicited sms received during powerOn
 	for (auto sms : _unsolicitedSmsReceived) {
 		notifySmsReceived (sms);
 	}
 	_unsolicitedSmsReceived.clear ();
-	
+
 	return true;
 }
 
@@ -102,7 +102,7 @@ int A6SmsTransceiver :: getNbSms () {
 
 	// Check if Sms is available
 	int nb = _A6l->getSMSLocs(_SMSLocs, NB_SMS_MAX);
-	
+
 	Logln (F("Nb sms:") << nb);
 	return nb;
 }
@@ -125,7 +125,7 @@ byte A6SmsTransceiver :: deleteSms (int index) {
 //========================================================================================================================
 //
 //========================================================================================================================
-byte A6SmsTransceiver :: deleteReadSms () {	
+byte A6SmsTransceiver :: deleteReadSms () {
 	Logln (F("Delete read sms"));
 	return _A6l->deleteSMS (1, 2);
 }
@@ -133,8 +133,8 @@ byte A6SmsTransceiver :: deleteReadSms () {
 //========================================================================================================================
 //
 //========================================================================================================================
-byte A6SmsTransceiver :: deleteAllSms () {		
-	Logln (F("Delete all sms"));	
+byte A6SmsTransceiver :: deleteAllSms () {
+	Logln (F("Delete all sms"));
 	return _A6l->deleteSMS (1, 4);
 }
 
@@ -169,43 +169,43 @@ bool isValidDate (String str) {
 //
 //========================================================================================================================
 bool A6SmsTransceiver :: handleSms (int index) {
-	
+
 	Logln (F("Handle sms at index: ") << index);
-	
+
 	SMSmessage sms = _A6l->readSMS(_SMSLocs[index]);
-	
+
 	if (sms.message.length() > 0) {
 
 		Logln (printSms (sms));
-		
+
 		if (isValidPhoneNumber (sms.number) && isValidDate (sms.date)) {
-			
+
 			deleteSms (index);
-			
+
 			sms.message = Gsm0338::gsm0338ToAscii (sms.message);
 			notifySmsReceived (sms);
-			
-			return true;	
+
+			return true;
 		}
 	}
-	
+
 	// Invalid sms ?
-	return false;	
+	return false;
 }
 
 //========================================================================================================================
 //
 //========================================================================================================================
 void A6SmsTransceiver :: sendSMS (SMSmessage & sms) {
-	
+
 	//String gsm0338Message = Gsm0338::asciiToGsm0338 (message);
-	// The max length of text message is 918, if you send more than 160 characters the message will be broken down in to chunks 
-	// of 153 characters before being sent 
-	String gsm0338Message = /*A6l->getRealTimeClock() + F(" ") +*/ sms.message;		// yy/MM/dd,hh:mm:ss+XX message   
+	// The max length of text message is 918, if you send more than 160 characters the message will be broken down in to chunks
+	// of 153 characters before being sent
+	String gsm0338Message = /*A6l->getRealTimeClock() + F(" ") +*/ sms.message;		// yy/MM/dd,hh:mm:ss+XX message
 	gsm0338Message = gsm0338Message.substring(0, 159);							// Here we can't send messages longer than 160 characters.
-	
+
 	Logln (F("Send sms message: ") <<  gsm0338Message << F(" to: ") << sms.number);
-	
+
 	_A6l->sendSMS(sms.number, gsm0338Message);
 }
 
@@ -215,7 +215,7 @@ void A6SmsTransceiver :: sendSMS (SMSmessage & sms) {
 StreamString A6SmsTransceiver :: printSms (SMSmessage & sms) {
 
 	StreamString sstr;
-	
+
 	sstr << F("sms from ") << sms.number << F(" received the ") << sms.date << F(":") << LN;
 	sstr << F("\"") << sms.message << F("\"") << LN << LN;
 

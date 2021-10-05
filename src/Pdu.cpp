@@ -72,7 +72,7 @@ static int DecodePhoneNumber (const unsigned char* buffer, int phone_number_leng
 }
 
 int pdu_decode (const unsigned char* buffer, int buffer_length,
-                // time_t* output_sms_time, 
+                // time_t* output_sms_time,
 	            char* output_sender_phone_number, int sender_phone_number_size,
 	            char* output_sms_text, int sms_text_size)
 {
@@ -87,9 +87,9 @@ int pdu_decode (const unsigned char* buffer, int buffer_length,
 	const int sender_number_length = buffer[sms_deliver_start + 1];
 	if (sender_number_length + 1 > sender_phone_number_size) return -1;  // Buffer too small to hold decoded phone number.
 
-	// const int sender_type_of_address = buffer[sms_deliver_start + 2];  
+	// const int sender_type_of_address = buffer[sms_deliver_start + 2];
 	DecodePhoneNumber(buffer + sms_deliver_start + 3, sender_number_length,  output_sender_phone_number);
-  
+
 	const int sms_pid_start = sms_deliver_start + 3 + (buffer[sms_deliver_start + 1] + 1) / 2;
 /*
 	// Decode timestamp.

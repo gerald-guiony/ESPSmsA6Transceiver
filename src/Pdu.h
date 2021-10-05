@@ -5,7 +5,7 @@
 
 //#include <time.h>
 
-/* 
+/*
  * Decode an SMS message. Output the decoded message into the sms text buffer.
  * Returns the length of the SMS dencoded message or a negative number in
  * case encoding failed (for example provided output buffer has not enough

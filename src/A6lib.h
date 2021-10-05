@@ -89,7 +89,7 @@ class A6lib {
 public:
     A6lib(SoftwareSerial * A6connection);
     ~A6lib();
-    
+
     byte begin  (long baudRate);
 
     void powerOn(int pin, std::function <void(SMSmessage &)> onUnsolicitedSMSReceived);
@@ -115,7 +115,7 @@ public:
     void enableSpeaker(byte enable);
 
     String getRealTimeClock();
-    
+
 private:
     byte waitRegistrationState (int state);
     byte waitUnsolicitedPduSMS (std::function <void(SMSmessage &)> onUnsolicitedSMSReceived);

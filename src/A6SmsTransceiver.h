@@ -22,7 +22,7 @@
 
 
 //------------------------------------------------------------------------------
-// 
+//
 class A6SmsTransceiver
 {
 
@@ -33,7 +33,7 @@ private:
 	SoftwareSerial * _a6Conn			= nullptr;
 
 	int _SMSLocs[NB_SMS_MAX] 			= {0};
-	
+
 	std::vector <SMSmessage>			_unsolicitedSmsReceived;
 
 public:
@@ -44,17 +44,17 @@ public:
 
 	A6SmsTransceiver					(uint8_t rxPin, uint8_t txPin, uint8_t pwrKey);
 	~A6SmsTransceiver					();
-	
+
 	bool start							();
 	void stop							();
 
 	int getNbSms						();
 	int getSignalStrength				();
-		
+
 	byte deleteSms						(int index);
 	byte deleteReadSms					();
 	byte deleteAllSms					();
-	
+
 	bool handleSms						(int index);
 	void sendSMS						(SMSmessage & sms);
 

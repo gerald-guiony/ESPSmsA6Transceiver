@@ -9,14 +9,14 @@
 #include <WString.h>
 
 //------------------------------------------------------------------------------
-// 
+//
 class Gsm0338
 {
 public:
 
 	static String gsm0338ToAscii (const String & strGsm0338);
-	static String asciiToGsm0338 (const String & strAscii); 
-	
+	static String asciiToGsm0338 (const String & strAscii);
+
 };
 
 
