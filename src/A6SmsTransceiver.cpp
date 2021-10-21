@@ -71,10 +71,13 @@ bool A6SmsTransceiver :: start () {
 		return false;
 	}
 
-	Logln (F("A6 GSM is up"));
-
 	// Be careful it seems to be mandatory to wait a delay before to read or send sms!
 	delay(2000);
+
+	_isStarted = true;
+	notifyGsmStateChanged (true, 0);
+
+	Logln (F("A6 GSM is up"));
 
 	// Handle unsolicited sms received during powerOn
 	for (auto sms : _unsolicitedSmsReceived) {
@@ -88,11 +91,25 @@ bool A6SmsTransceiver :: start () {
 //========================================================================================================================
 // Do it as soon as possible to power off gsm module after a reboot
 //========================================================================================================================
-void A6SmsTransceiver :: stop () {
+bool A6SmsTransceiver :: stop () {
 
-	_A6l->powerOff (_pwrKey);
+	if (_A6l->powerOff (_pwrKey)) {
 
-	Logln (F("A6 GSM is down"));
+		_isStarted = false;
+		notifyGsmStateChanged (false, 0);
+
+		Logln (F("A6 GSM is down"));
+
+		return true;
+	}
+	return false;
+}
+
+//========================================================================================================================
+//
+//========================================================================================================================
+bool A6SmsTransceiver :: isStarted () {
+	return _isStarted;
 }
 
 //========================================================================================================================
@@ -112,6 +129,15 @@ int A6SmsTransceiver :: getNbSms () {
 //========================================================================================================================
 int A6SmsTransceiver :: getSignalStrength () {
 	return _A6l->getSignalStrength();
+}
+
+//========================================================================================================================
+//
+//========================================================================================================================
+void A6SmsTransceiver :: updateSignalStrength () {
+	if (isStarted ()) {
+		notifyGsmStateChanged (true, getSignalStrength());
+	}
 }
 
 //========================================================================================================================
@@ -196,7 +222,7 @@ bool A6SmsTransceiver :: handleSms (int index) {
 //========================================================================================================================
 //
 //========================================================================================================================
-void A6SmsTransceiver :: sendSMS (SMSmessage & sms) {
+bool A6SmsTransceiver :: sendSMS (const SMSmessage & sms) {
 
 	//String gsm0338Message = Gsm0338::asciiToGsm0338 (message);
 	// The max length of text message is 918, if you send more than 160 characters the message will be broken down in to chunks
@@ -206,13 +232,17 @@ void A6SmsTransceiver :: sendSMS (SMSmessage & sms) {
 
 	Logln (F("Send sms message: ") <<  gsm0338Message << F(" to: ") << sms.number);
 
-	_A6l->sendSMS(sms.number, gsm0338Message);
+	if (A6_OK == _A6l->sendSMS(sms.number, gsm0338Message)) {
+		notifySmsSent (sms);
+		return true;
+	}
+	return false;
 }
 
 //========================================================================================================================
 //
 //========================================================================================================================
-StreamString A6SmsTransceiver :: printSms (SMSmessage & sms) {
+StreamString A6SmsTransceiver :: printSms (const SMSmessage & sms) {
 
 	StreamString sstr;
 

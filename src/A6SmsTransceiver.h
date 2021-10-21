@@ -34,11 +34,15 @@ private:
 
 	int _SMSLocs[NB_SMS_MAX] 			= {0};
 
+	bool _isStarted						= false;
+
 	std::vector <SMSmessage>			_unsolicitedSmsReceived;
 
 public:
 
-	Delegate <SMSmessage &> 			notifySmsReceived;
+	Delegate <const SMSmessage &> 		notifySmsReceived;
+	Delegate <const SMSmessage &>		notifySmsSent;
+	Delegate <bool, int> 				notifyGsmStateChanged;
 
 public:
 
@@ -46,19 +50,22 @@ public:
 	~A6SmsTransceiver					();
 
 	bool start							();
-	void stop							();
+	bool stop							();
+	bool isStarted						();
 
 	int getNbSms						();
 	int getSignalStrength				();
+
+	void updateSignalStrength			();
 
 	byte deleteSms						(int index);
 	byte deleteReadSms					();
 	byte deleteAllSms					();
 
 	bool handleSms						(int index);
-	void sendSMS						(SMSmessage & sms);
+	bool sendSMS						(const SMSmessage & sms);
 
-	static StreamString printSms		(SMSmessage & sms);
+	static StreamString printSms		(const SMSmessage & sms);
 };
 
 

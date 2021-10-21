@@ -194,41 +194,41 @@ void A6lib::powerOn (int pin, std::function <void(SMSmessage &)> onUnsolicitedSM
 }
 
 // Turn the modem power completely off.
-void A6lib::powerOff (int pin) {
+bool A6lib::powerOff (int pin) {
     pinMode(pin, OUTPUT);
     digitalWrite(pin, LOW);
 
     // Power off command => if pin = PWR_KEY and pin is low, the modem will not restart
-    A6command("AT+CPOF", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
+    return (A6_OK == A6command("AT+CPOF", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 // Dial a number.
-void A6lib::dial(String number) {
+bool A6lib::dial(String number) {
     char buffer[50];
 
     Logln("Dialing number...");
 
     sprintf(buffer, "ATD%s;", number.c_str());
-    A6command(buffer, "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
+    return (A6_OK == A6command(buffer, "OK", "yy", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 
 // Redial the last number.
-void A6lib::redial() {
+bool A6lib::redial() {
     Logln("Redialing last number...");
-    A6command("AT+DLST", "OK", "CONNECT", A6_CMD_TIMEOUT, 2, NULL);
+    return (A6_OK == A6command("AT+DLST", "OK", "CONNECT", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 
 // Answer a call.
-void A6lib::answer() {
-    A6command("ATA", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
+bool A6lib::answer() {
+    return (A6_OK == A6command("ATA", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 
 // Hang up the phone.
-void A6lib::hangUp() {
-    A6command("ATH", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
+bool A6lib::hangUp() {
+    return (A6_OK == A6command("ATH", "OK", "yy", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 
@@ -424,25 +424,25 @@ byte A6lib::setSMScharset(String charset) {
 
 // Set the volume for the speaker. level should be a number between 5 and
 // 8 inclusive.
-void A6lib::setVol(byte level) {
+bool A6lib::setVol(byte level) {
     char buffer[30];
 
     // level should be between 5 and 8.
     level = min(max(level, 5), 8);
     sprintf(buffer, "AT+CLVL=%d", level);
-    A6command(buffer, "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
+    return (A6_OK == A6command(buffer, "OK", "yy", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 
 // Enable the speaker, rather than the headphones. Pass 0 to route audio through
 // headphones, 1 through speaker.
-void A6lib::enableSpeaker(byte enable) {
+bool A6lib::enableSpeaker(byte enable) {
     char buffer[30];
 
     // enable should be between 0 and 1.
     enable = min(max(enable, 0), 1);
     sprintf(buffer, "AT+SNFS=%d", enable);
-    A6command(buffer, "OK", "yy", A6_CMD_TIMEOUT, 2, NULL);
+    return (A6_OK == A6command(buffer, "OK", "yy", A6_CMD_TIMEOUT, 2, NULL));
 }
 
 

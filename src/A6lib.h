@@ -93,12 +93,12 @@ public:
     byte begin  (long baudRate);
 
     void powerOn(int pin, std::function <void(SMSmessage &)> onUnsolicitedSMSReceived);
-    void powerOff(int pin);
+    bool powerOff(int pin);
 
-    void dial(String number);
-    void redial();
-    void answer();
-    void hangUp();
+    bool dial(String number);
+    bool redial();
+    bool answer();
+    bool hangUp();
     callInfo checkCallStatus();
     int getSignalStrength();
 
@@ -111,8 +111,8 @@ public:
     byte deleteSMS(int index, int flag);
     byte setSMScharset(String charset);
 
-    void setVol(byte level);
-    void enableSpeaker(byte enable);
+    bool setVol(byte level);
+    bool enableSpeaker(byte enable);
 
     String getRealTimeClock();
 
