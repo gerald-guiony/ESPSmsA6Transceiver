@@ -40,9 +40,9 @@ private:
 
 public:
 
-	Delegate <const SMSmessage &> 		notifySmsReceived;
-	Delegate <const SMSmessage &>		notifySmsSent;
-	Delegate <bool, int> 				notifyGsmStateChanged;
+	Signal <const SMSmessage &> 		notifySmsReceived;
+	Signal <const SMSmessage &>			notifySmsSent;
+	Signal <bool, int> 					notifyGsmStateChanged;
 
 public:
 

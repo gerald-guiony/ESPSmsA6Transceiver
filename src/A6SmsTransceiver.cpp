@@ -23,13 +23,13 @@ A6SmsTransceiver :: A6SmsTransceiver (uint8_t rxPin, uint8_t txPin, uint8_t pwrK
 	class SoftwareSerialLogger : public SoftwareSerial
 	{
 	public:
-		SoftwareSerialLogger (uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false, unsigned int buffSize = 64) :
-			SoftwareSerial (receivePin, transmitPin, inverse_logic, buffSize) {}
+		SoftwareSerialLogger (uint8_t receivePin, uint8_t transmitPin, bool inverse_logic = false) :
+			SoftwareSerial (receivePin, transmitPin, inverse_logic) {}
 		virtual size_t	write	(uint8_t byte)	override { LOGGER.write (byte); return SoftwareSerial::write (byte); }
 	};
-	_a6Conn = new SoftwareSerialLogger (rxPin, txPin, false, 256);
+	_a6Conn = new SoftwareSerialLogger (rxPin, txPin, false);
 #else
-	_a6Conn = new SoftwareSerial (rxPin, txPin, false, 256);
+	_a6Conn = new SoftwareSerial (rxPin, txPin, false);
 #endif
 
 	_A6l = new A6lib (_a6Conn);
