@@ -24,7 +24,7 @@ template<class T> inline Print & operator <<(Print & printer, T arg) { printer.p
 #include "Pdu.h"
 
 
-#ifdef ESP8266
+#if defined (ESP8266) || defined (ESP32)
 #	define min(a,b)	(a)>(b)?(b):(a)
 #	define max(a,b)	(a)>(b)?(a):(b)
 #endif
@@ -561,7 +561,7 @@ byte A6lib::A6waitFor(const char *resp1, const char *resp2, uint16_t timeout, St
     byte retVal = 99;
     do {
         reply += read();
-#ifdef ESP8266
+#if defined (ESP8266) || defined (ESP32)
         //yield();
 		delay(100);
 #endif
