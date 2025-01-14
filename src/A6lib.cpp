@@ -7,7 +7,7 @@
 
 #include <Arduino.h>
 
-#include <Global.h>
+#include <EspBoard.h>
 #include <Print/Logger.h>
 /*
 template<class T> inline Print & operator <<(Print & printer, T arg) { printer.print(arg); return printer; }

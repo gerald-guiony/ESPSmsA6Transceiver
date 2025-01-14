@@ -67,7 +67,7 @@ bool A6SmsTransceiver :: start () {
 	if (_A6l->begin (9600 /*115200*/) != A6_OK) {
 		Logln (F("Can't connect to A6 GSM "));
 		stop ();
-		blinkStatus (10);
+		EspBoard::blinks (10);
 		return false;
 	}
 
