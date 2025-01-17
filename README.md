@@ -1,6 +1,6 @@
 # ESPSmsA6Transceiver
 
-A C++ ESP8266/Arduino library for communicating with the AI-Thinker A6 GSM module.
+A C++ library for the Arduino Core designed for the ESP8266 board that enables GSM transmission and reception using the AI-Thinker A6 GSM module.
 
 This library is an adaptation of
 [the A6lib library](https://github.com/skorokithakis/A6lib)
