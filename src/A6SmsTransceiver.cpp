@@ -17,7 +17,7 @@ A6SmsTransceiver :: A6SmsTransceiver (uint8_t rxPin, uint8_t txPin, uint8_t pwrK
 
 	_pwrKey = pwrKey;
 
-    // Instantiate the class with Tx, Rx (remember to swap them when connecting to the A6, i.e. connect the A6's Rx pin to UART_TX).
+	// Instantiate the class with Tx, Rx (remember to swap them when connecting to the A6, i.e. connect the A6's Rx pin to UART_TX).
 #ifdef DEBUG
 	//------------------------------------------------------------------------------
 	class SoftwareSerialLogger : public SoftwareSerial
@@ -168,27 +168,27 @@ byte A6SmsTransceiver :: deleteAllSms () {
 //
 //========================================================================================================================
 bool isValidPhoneNumber (String str) {
-    boolean isValid = false;
-    for (uint8_t i = 0; i < str.length(); i++) {
-        isValid = isdigit(str.charAt(i)) || str.charAt(i) == '+';
-        if (!isValid)
-            return false;
-    }
-    return isValid;
+	boolean isValid = false;
+	for (uint8_t i = 0; i < str.length(); i++) {
+		isValid = isdigit(str.charAt(i)) || str.charAt(i) == '+';
+		if (!isValid)
+			return false;
+	}
+	return isValid;
 }
 
 //========================================================================================================================
 //
 //========================================================================================================================
 bool isValidDate (String str) {
-    boolean isValid = false;
-    for (uint8_t i = 0; i < str.length(); i++) {
-        char ch = str.charAt(i);
-        isValid = isdigit(ch) || ch == '+' || ch == ':' || ch == '/' || ch == ',';
-        if (!isValid)
-            return false;
-    }
-    return isValid;
+	boolean isValid = false;
+	for (uint8_t i = 0; i < str.length(); i++) {
+		char ch = str.charAt(i);
+		isValid = isdigit(ch) || ch == '+' || ch == ':' || ch == '/' || ch == ',';
+		if (!isValid)
+			return false;
+	}
+	return isValid;
 }
 
 //========================================================================================================================

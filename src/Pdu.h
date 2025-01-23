@@ -12,9 +12,9 @@
  * space).
  */
 int pdu_decode(const unsigned char* pdu, int pdu_len,
-	       /*time_t* sms_time,*/
-	       char* phone_number, int phone_number_size,
-	       char* text, int text_size);
+		   /*time_t* sms_time,*/
+		   char* phone_number, int phone_number_size,
+		   char* text, int text_size);
 
 
 #endif   // SMS_SMS_H_

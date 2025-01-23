@@ -13,7 +13,7 @@ enum {
 	TYPE_OF_ADDRESS_NATIONAL_SUBSCRIBER = 0xC8,
 
 	SMS_DELIVER_ONE_MESSAGE = 0x04,
-	SMS_SUBMIT              = 0x11,
+	SMS_SUBMIT			  	= 0x11,
 
 	SMS_MAX_7BIT_TEXT_LENGTH  = 160,
 };
@@ -64,7 +64,7 @@ static int DecodePhoneNumber (const unsigned char* buffer, int phone_number_leng
 	for (; i < phone_number_length; ++i) {
 		if (i % 2 == 0)
 			output_phone_number[i] = (buffer[i / 2] & BITMASK_LOW_4BITS) + '0';
-	        else
+		else
 			output_phone_number[i] = ((buffer[i / 2] & BITMASK_HIGH_4BITS) >> 4) + '0';
 	}
 	output_phone_number[phone_number_length] = '\0';  // Terminate C string.
@@ -72,9 +72,9 @@ static int DecodePhoneNumber (const unsigned char* buffer, int phone_number_leng
 }
 
 int pdu_decode (const unsigned char* buffer, int buffer_length,
-                // time_t* output_sms_time,
-	            char* output_sender_phone_number, int sender_phone_number_size,
-	            char* output_sms_text, int sms_text_size)
+				// time_t* output_sms_time,
+				char* output_sender_phone_number, int sender_phone_number_size,
+				char* output_sms_text, int sms_text_size)
 {
 
 	if (buffer_length <= 0)
