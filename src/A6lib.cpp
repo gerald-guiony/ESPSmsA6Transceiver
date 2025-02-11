@@ -30,6 +30,9 @@ template<class T> inline Print & operator <<(Print & printer, T arg) { printer.p
 #endif
 
 
+namespace a6gsm {
+
+
 /////////////////////////////////////////////
 // Public methods.
 //
@@ -591,4 +594,6 @@ byte A6lib::A6waitFor(const char *resp1, const char *resp2, uint16_t timeout, St
 		}
 	}
 	return retVal;
+}
+
 }

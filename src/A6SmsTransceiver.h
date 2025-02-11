@@ -18,8 +18,14 @@
 #include "A6lib.h"
 
 
+
+using namespace corex;
+
+
 #define NB_SMS_MAX						10
 
+
+namespace a6gsm {
 
 //------------------------------------------------------------------------------
 //
@@ -68,4 +74,4 @@ public:
 	static StreamString printSms		(const SMSmessage & sms);
 };
 
-
+}

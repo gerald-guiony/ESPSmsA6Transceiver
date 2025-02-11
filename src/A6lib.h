@@ -40,6 +40,9 @@
 #define A6_CMD_TIMEOUT 1000
 
 
+namespace a6gsm {
+
+
 enum call_direction {
 	DIR_OUTGOING = 0,
 	DIR_INCOMING = 1
@@ -129,4 +132,7 @@ private:
 	SoftwareSerial *A6conn;
 
 };
+
+}
+
 #endif

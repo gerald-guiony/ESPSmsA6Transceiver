@@ -8,6 +8,8 @@
 #include "Gsm0338.h"
 
 
+namespace a6gsm {
+
 //========================================================================================================================
 // The standard encoding for GSM messages is the 7-bit default alphabet as defined in the 23.038 recommendation
 // https://www.csoft.co.uk/support/character-sets
@@ -160,4 +162,7 @@ String Gsm0338 :: asciiToGsm0338 (const String & strAscii) {
 	}
 
 	return strGsm0338;
+}
+
+
 }

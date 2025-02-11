@@ -8,10 +8,18 @@
 #include "A6SmsTransceiver.h"
 
 
+namespace a6gsm {
+
 //========================================================================================================================
 //
 //========================================================================================================================
 A6SmsTransceiver :: A6SmsTransceiver (uint8_t rxPin, uint8_t txPin, uint8_t pwrKey) {
+
+	// => WARNING !!
+	// Do this as soon as possible to not wake up A6 gsm module during reboot
+	pinMode (pwrKey, OUTPUT);
+	digitalWrite (pwrKey, LOW);
+
 
 	Logln (F("Initializing A6 GSM"));
 
@@ -250,4 +258,6 @@ StreamString A6SmsTransceiver :: printSms (const SMSmessage & sms) {
 	sstr << F("\"") << sms.message << F("\"") << LN << LN;
 
 	return sstr;
+}
+
 }

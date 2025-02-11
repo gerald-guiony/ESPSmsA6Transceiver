@@ -3,6 +3,8 @@
 #include "Pdu.h"
 
 
+namespace a6gsm {
+
 enum {
 	BITMASK_7BITS = 0x7F,
 	BITMASK_8BITS = 0xFF,
@@ -124,5 +126,5 @@ int pdu_decode (const unsigned char* buffer, int buffer_length,
 	return output_sms_text_length;
 }
 
-
+}
 
