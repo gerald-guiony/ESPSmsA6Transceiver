@@ -32,3 +32,7 @@ To use this library you might need to have the latest version of [ESPCoreExtensi
 * Pinout
 
 ![A6 GSM Pinout](https://lastminuteengineers.com/wp-content/uploads/arduino/A6-GSM-GPRS-Module-Pinout.png)
+
+## Example
+
+[Smart thermostat](https://github.com/gerald-guiony/ESPRadioCC1101Transceiver/blob/master/examples/ThermostatRemoteControl)
